@@ -88,26 +88,6 @@ public class PocketSphinxActivity extends Activity implements
             }
         });
 
-        /*
-
-        slideButton = (Button) findViewById(R.id.slideButton);
-        slidingDrawer = (SlidingDrawer) findViewById(R.id.SlidingDrawer);
-
-        slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
-            @Override
-            public void onDrawerOpened() {
-                slideButton.setText("Close Help");
-                switchSearch(KWS_SEARCH);
-            }
-        });
-        slidingDrawer.setOnDrawerCloseListener(new SlidingDrawer.OnDrawerCloseListener() {
-            @Override
-            public void onDrawerClosed() {
-                slideButton.setText("Open Help");
-            }
-        });
-        */
-
         // Recognizer initialization is a time-consuming and it involves IO,
         // so we execute it in async task
 
@@ -231,6 +211,19 @@ public class PocketSphinxActivity extends Activity implements
             case "back side":
                 degree = 180;
                 break;
+            case "front right":
+                degree = 45;
+                break;
+            case "front left":
+                degree = -45;
+                break;
+            case "back right":
+                degree = 135;
+                break;
+            case "back left":
+                degree = -135;
+                break;
+            /*
             case "one o clock":
                 degree = 30;
                 break;
@@ -267,6 +260,7 @@ public class PocketSphinxActivity extends Activity implements
             case "twelve o clock":
                 degree = 0;
                 break;
+                */
         }
         return degree;
     }
@@ -341,7 +335,7 @@ public class PocketSphinxActivity extends Activity implements
         recognizer = defaultSetup()
                 .setAcousticModel(new File(assetsDir, "en-us-ptm"))
                 //.setDictionary(new File(assetsDir, "cmudict-en-us.dict"))
-                .setDictionary(new File(assetsDir, "commands.dict"))
+                .setDictionary(new File(assetsDir, "commandsShort.dict"))
                 // To disable logging of raw audio comment out this call (takes a lot of space on the device)
                 .setRawLogDir(assetsDir)
                 // Threshold to tune for keyphrase to balance between false alarms and misses
