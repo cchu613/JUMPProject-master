@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">Photos To Go</string>
+
+    <string name="kws_caption">Say \"take picture\" to activate camera.</string>
+    <string name="commands_caption">To take picture say a command.</string>
+    <string name="finished_caption">Picture taken.</string>
+    <string name="helpText">Say \"take picture\" followed by any command:\n\nList of commands available:\nfront side \nback side \nleft side \n right side \n_____o\'clock (1-12)</string>
+    <!--
+    <string name="menu_caption">Say \"digits\", \"forecast\" or \"phones\" to choose the grammar, language model or phonetic decoder example.</string>
+    <string name="digits_caption">To try recognition of digits: say something like \"one two three four five\".</string>
+    <string name="forecast_caption">To try recognition of a weather forecast like \"sunny spells on Wednesday\".</string>
+    <string name="phone_caption">To try phonetic recognition say anything.</string>-->
+</resources>

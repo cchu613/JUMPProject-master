@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/picturebackground">
+
+    <ImageButton
+        android:layout_width="102dp"
+        android:layout_height="102dp"
+        android:id="@+id/returnButton"
+        android:background="@drawable/returnbutton"
+        />
+
+    <TextView
+        android:id="@+id/caption_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:typeface="sans"
+        android:textColor="#854646"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/result_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#665555" />
+
+</LinearLayout>
+
+
+
+
+
+
+    <!--
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Help"
+                android:id="@+id/helpbutton"
+                android:layout_gravity="bottom"
+                android:layout_margin="30dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:background="#165859" />
+    -->
+
+
+    <!--
+        <SlidingDrawer
+            android:layout_width="wrap_content"
+            android:id="@+id/SlidingDrawer"
+            android:handle="@+id/slideButton"
+            android:content="@+id/contentLayout"
+            android:padding="10dip"
+            android:layout_height="400dp"
+            android:orientation="vertical">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Open Help"
+                android:layout_gravity="bottom"
+                android:layout_margin="30dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:background="#165859"
+                android:id="@+id/slideButton"
+                android:textColor="#ffffff">
+                </Button>
+
+
+                android:text = "@string/helpText"
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/contentLayout"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="10dip"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="350dp"
+                    android:text = "@string/helpText"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:padding="20dp"
+                    android:background="#0e727c" />
+            </LinearLayout>
+
+        </SlidingDrawer>
+        -->
+    </LinearLayout>

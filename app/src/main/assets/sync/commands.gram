@@ -1,0 +1,26 @@
+#JSGF V1.0;
+
+grammar commands;
+
+<command> =
+          take picture      |
+          right side        |
+          left side         |
+          front side        |
+          back side         |
+          one o clock       |
+          two o clock       |
+          three o clock     |
+          four o clock      |
+          five o clock      |
+          six o clock       |
+          seven o clock     |
+          eight o clock     |
+          nine o clock      |
+          ten o clock       |
+          eleven o clock    |
+          twelve o clock    ;
+
+
+
+public <commands> = <command>+;

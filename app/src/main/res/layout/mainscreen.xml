@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rootRL"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background2">
+
+
+    <ImageButton
+        android:layout_width="250dp"
+        android:layout_height="270dp"
+        android:id="@+id/cameraButton"
+        android:background="@drawable/camera"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerVertical="true" />
+
+    <ImageButton
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:id="@+id/helpButton"
+        android:background="@drawable/helpbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/cameraButton"
+        android:layout_toEndOf="@+id/cameraButton"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Click to\nTake \nPicture"
+        android:id="@+id/textView"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="150dp"
+        android:layout_marginStart="150dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:textColor="#454141"
+        android:textSize="25dp"
+        android:paddingEnd="30dp"
+        android:layout_alignRight="@+id/cameraButton"
+        android:gravity="center_horizontal" />
+</RelativeLayout>
+
+
