@@ -348,7 +348,7 @@ public class PocketSphinxActivity extends Activity implements
                 .setDictionary(new File(assetsDir, "commandsShort.dict"))
                 // To disable logging of raw audio comment out this call (takes a lot of space on the device)
                 .setRawLogDir(assetsDir)
-                // Threshold to tune for keyphrase to balance between false alarms and misses
+                // Threshold to tune for keyphrase to balance between false alarms and misses (1e-80 to 1e80)
                 .setKeywordThreshold(1e-45f)
                 
                 // Use context-independent phonetic search, context-dependent is too slow for mobile
