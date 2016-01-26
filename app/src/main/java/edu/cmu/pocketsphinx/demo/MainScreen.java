@@ -26,6 +26,7 @@ public class MainScreen extends Activity {
         setContentView(R.layout.mainscreen);
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.anim_alpha);
 
+        //If the Camera Button is clicked, open PocketSphinxActivity
         cameraButton = (ImageButton) findViewById(R.id.cameraButton);
         // Register the onClick listener with the implementation above
         cameraButton.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +36,7 @@ public class MainScreen extends Activity {
             }
         });
 
+        //If the Help Button is clicked, open the helpScreen activity
         helpButton=(ImageButton) findViewById(R.id.helpButton);
         // Register the onClick listener with the implementation above
         helpButton.setOnClickListener(new View.OnClickListener() {

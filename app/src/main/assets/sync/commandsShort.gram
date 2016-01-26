@@ -1,0 +1,18 @@
+#JSGF V1.0;
+
+grammar commands;
+
+<command> =
+          take picture      |
+          right side        |
+          left side         |
+          front side        |
+          back side         |
+          front right       |
+          front left        |
+          back right        |
+          back left         ;
+
+
+
+public <commands> = <command>+;

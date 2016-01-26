@@ -25,6 +25,7 @@ public class helpScreen extends Activity {
         setContentView(R.layout.help);
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.anim_alpha);
 
+        //Add a return button to go back to MainScreen
         returnButton = (ImageButton) findViewById(R.id.returnButton);
         // Register the onClick listener with the implementation above
         returnButton.setOnClickListener(new View.OnClickListener() {

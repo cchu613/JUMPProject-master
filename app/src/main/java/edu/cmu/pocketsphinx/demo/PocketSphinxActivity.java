@@ -41,9 +41,6 @@ import java.io.ByteArrayOutputStream;
 public class PocketSphinxActivity extends Activity implements
         RecognitionListener, OnInitListener {
 
-   // Button slideButton;
-    //SlidingDrawer slidingDrawer;
-
     ImageButton returnButton;
 
     /* Named searches allow to quickly reconfigure the decoder */
@@ -72,25 +69,27 @@ public class PocketSphinxActivity extends Activity implements
                 .setText("Preparing the recognizer");
 
 
+        //Prepare the Google TTS Recognizer
         tts = new TextToSpeech(this, this);
 
+        //Add animation when the button is clicked: Fade out
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.anim_alpha);
         returnButton = (ImageButton)findViewById(R.id.returnButton);
-        // Register the onClick listener with the implementation above
         returnButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 v.startAnimation(animAlpha);
 
+                //Shuts down the voice recognizer
                 recognizer.cancel();
                 recognizer.shutdown();
+                //Returns to the MainScreen
                 startActivity(new Intent(PocketSphinxActivity.this, MainScreen.class));
             }
         });
 
         // Recognizer initialization is a time-consuming and it involves IO,
-        // so we execute it in async task
-
+        // so we execute it in async task which runs once PocketSphinxActivity opens in the background
         new AsyncTask<Void, Void, Exception>() {
             @Override
             protected Exception doInBackground(Void... params) {
@@ -104,18 +103,23 @@ public class PocketSphinxActivity extends Activity implements
                 return null;
             }
 
+            //Once the Recognizer executes
             @Override
             protected void onPostExecute(Exception result) {
+                //If there is an error, set the caption to say Error
                 if (result != null) {
                     ((TextView) findViewById(R.id.caption_text))
                             .setText("Failed to init recognizer " + result);
-                } else {
+                }
+                //If the Recognizer Opens correctly, set the recognizer to search for the key phrase
+                else {
                     switchSearch(KWS_SEARCH);
                 }
             }
         }.execute();
     }
 
+    //Connect to the Raspberry Pi through SSH
     public static String executeRemoteCommand(String username,String password,String hostname,int port, int degree)
             throws Exception {
         JSch jsch = new JSch();
@@ -142,6 +146,8 @@ public class PocketSphinxActivity extends Activity implements
 
         return baos.toString();
     }
+
+    //Set up Google TTS
     @Override
     public void onInit(int code){
         if(code==TextToSpeech.SUCCESS)
@@ -157,6 +163,7 @@ public class PocketSphinxActivity extends Activity implements
 
     }
 
+    //On Destroy for both Google TTS and PocketSphinx
     @Override
     public void onDestroy() {
         recognizer.cancel();
@@ -281,6 +288,7 @@ public class PocketSphinxActivity extends Activity implements
                 }
             }.execute(1);
             Log.i("TAKE PICTURE", "Rotate by this degree: " + degree);
+            //Google TTS repeat command
             if (!tts.isSpeaking()) {
                 tts.speak("Taking picture at "+degree+" degrees", TextToSpeech.QUEUE_FLUSH, null);
             }
@@ -297,6 +305,7 @@ public class PocketSphinxActivity extends Activity implements
         if (hypothesis != null) {
             String text = hypothesis.getHypstr();
             makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+            //Send the recognized command to take picture
             takePic(text);
         }
     }
@@ -314,10 +323,11 @@ public class PocketSphinxActivity extends Activity implements
             switchSearch(KWS_SEARCH);
     }
 
+    //Either listen for the Key Phrase or words in the Language Dictionary
     private void switchSearch(String searchName) {
         recognizer.stop();
         
-        // If we are not spotting, start listening with timeout (10000 ms or 10 seconds).
+        // If we are not spotting, start listening with timeout.
         if (searchName.equals(KWS_SEARCH))
             recognizer.startListening(searchName);
         else {
@@ -334,7 +344,7 @@ public class PocketSphinxActivity extends Activity implements
         
         recognizer = defaultSetup()
                 .setAcousticModel(new File(assetsDir, "en-us-ptm"))
-                //.setDictionary(new File(assetsDir, "cmudict-en-us.dict"))
+                //Use the created dictionary to save file space
                 .setDictionary(new File(assetsDir, "commandsShort.dict"))
                 // To disable logging of raw audio comment out this call (takes a lot of space on the device)
                 .setRawLogDir(assetsDir)
@@ -347,14 +357,11 @@ public class PocketSphinxActivity extends Activity implements
                 .getRecognizer();
         recognizer.addListener(this);
 
-        /** In your application you might not need to add all those searches.
-         * They are added here for demonstration. You can leave just one.
-         */
 
         // Create keyword-activation search.
         recognizer.addKeyphraseSearch(KWS_SEARCH, KEYPHRASE);
 
-        File commandsGrammar = new File(assetsDir, "commands.gram");
+        File commandsGrammar = new File(assetsDir, "commandsShort.gram");
         recognizer.addGrammarSearch(COMMANDS_SEARCH, commandsGrammar);
 
 
@@ -365,10 +372,10 @@ public class PocketSphinxActivity extends Activity implements
         ((TextView) findViewById(R.id.caption_text)).setText(error.getMessage());
     }
 
+
+    //If the timer runs out, then switch the recognizer to search for the key phrase instead.
     @Override
     public void onTimeout() {
         switchSearch(KWS_SEARCH);
-
     }
-
 }
